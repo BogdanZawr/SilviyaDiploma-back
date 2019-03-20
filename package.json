@@ -1,0 +1,54 @@
+{
+  "name": "Base",
+  "version": "1.0.0",
+  "main": "app.js",
+  "engines": {
+    "node": ">=11.6"
+  },
+  "dependencies": {
+    "aes256": "^1.0.4",
+    "apidoc": "^0.17.7",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-preset-env": "^1.7.0",
+    "bluebird": "^3.5.3",
+    "fastest-validator": "^0.6.16",
+    "keygen": "^0.3.1",
+    "koa": "^2.7.0",
+    "koa-body": "^4.1.0",
+    "koa-passport": "^4.1.1",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "lodash": "^4.17.11",
+    "mailgun-js": "^0.22.0",
+    "mongoose": "^5.4.19",
+    "nconf": "^0.10.0",
+    "passport-http-bearer": "^1.0.1",
+    "pbkdf2": "^3.0.17",
+    "q": "^1.5.1",
+    "redis": "^2.8.0",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.15.1",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-babel": "^5.3.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-mocha": "^5.3.0",
+    "eslint-plugin-react": "^7.12.4",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.10"
+  },
+  "scripts": {
+    "postinstall": "npm run build && npm run doc",
+    "build": "rm -rf dist && babel 'server/' -d 'dist/' --delete-dir-on-start --copy-files",
+    "start": "nodemon --watch server --exec babel-node server/index.js",
+    "doc": "apidoc -i 'server/route' -o apidoc/",
+    "prod": "NODE_ENV=production node app.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --require babel-core/register ./test/index.js --recursive --no-timeouts --exit"
+  }
+}

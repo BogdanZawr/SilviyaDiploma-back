@@ -1,0 +1,11 @@
+{
+  "name": "base",
+  "version": "0.0.1",
+  "description": "Base api doc",
+  "title": "Base api doc",
+  "template": {
+    "forceLanguage": "en",
+    "withGenerator": false,
+    "withCompare": false
+  }
+}

@@ -1,0 +1,11 @@
+node_modules
+npm-debug.log
+apidoc
+dist
+key.json
+.DS_Store
+*/.DS_Store
+**/.DS_Store
+*/**/.DS_Store
+package-lock.json
+.idea
