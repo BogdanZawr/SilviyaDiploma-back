@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import fs from 'fs';
 import send from 'koa-send';
+import qs from 'koa-qs';
 import path from 'path';
 import body from 'koa-body';
 import passport from 'koa-passport';
@@ -20,6 +21,8 @@ const main = async () => {
     await require('./start').default();
 
     const app = new Koa();
+
+    qs(app);
 
     app.use(passport.initialize());
 

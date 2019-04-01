@@ -19,6 +19,7 @@
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-passport": "^4.1.1",
+    "koa-qs": "^2.0.0",
     "koa-router": "^7.4.0",
     "koa-send": "^5.0.0",
     "lodash": "^4.17.11",
