@@ -1,22 +1,15 @@
-import { Schema } from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 import _ from 'lodash';
+
 
 import standardField from '../../component/db/dbStandardField';
 
 export default new Schema(_.assignIn({
-  email: {
-    type: String,
-    required: true,
-    trim: true,
-    unique: true,
-  },
+  fictionId: { type: mongoose.Types.ObjectId, required: true },
 
+  content: { type: String, required: true },
+  userId: { type: mongoose.Types.ObjectId, required: true },
   lastName: { type: String, required: true },
   firstName: { type: String, required: true },
-
-  salt: String,
-  password: String,
-
-  roles: [{ type: String, enum: ['admin', 'user'], default: ['user'] }],
 },
 standardField));

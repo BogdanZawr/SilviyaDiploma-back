@@ -10,10 +10,11 @@ export default async () => {
     }
 
     await accessAction.register({
-      email: 'first@mail.com',
-      password: 'first',
-      firstName: 'first',
-      lastName: 'first',
+      email: 'admin@mail.com',
+      password: '123456',
+      firstName: 'admin',
+      lastName: 'root',
+      roles: ['admin'],
     });
   } catch (err) {
     console.log(err);

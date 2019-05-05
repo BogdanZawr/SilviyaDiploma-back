@@ -12,8 +12,7 @@ if (config.allowCrosOrigin) {
     if (req.method === 'OPTIONS') {
       req.status = 200;
       req.body = 'OK';
-    }
-    else {
+    } else {
       await next();
     }
   });
