@@ -9,7 +9,7 @@ export const router = koaRouter({
   prefix: '/api/v1/fiction',
 });
 
-router.all('/*', bearerMiddleware);
+router.all(['/create', '/update', '/delete'], bearerMiddleware);
 
 router.post('/create', async (req) => {
   await middlewareWrapper.wrape(req, null, async () => {
@@ -34,7 +34,8 @@ router.delete('/delete', async (req) => {
 
 router.get('/getFilteredList', async (req) => {
   await middlewareWrapper.wrape(req, null, async () => {
-    const validData = await validate.list(req.request.body, req.request.user);
+    console.log(req.request.body);
+    const validData = await validate.list(req.request.body);
     return action.getFilteredList(validData, req.request.user);
   });
 });

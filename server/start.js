@@ -3,7 +3,7 @@ import userWrite from './model/write/user';
 
 export default async () => {
   try {
-    const user = await userWrite.findByEmail('first@mail.com');
+    const user = await userWrite.findByEmail('admin@mail.com');
 
     if (user) {
       return;

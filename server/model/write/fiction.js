@@ -37,10 +37,16 @@ class FictionWrite {
     ];
 
     const query = {
-      status: { $in: data.status },
-      genre: { $in: data.genre },
       isDeleted: false,
     };
+
+    if (data.status) {
+      query.status = { $in: data.status };
+    }
+
+    if (data.genre) {
+      query.genre = { $in: data.genre };
+    }
 
     if (data.search) {
       const or = [];

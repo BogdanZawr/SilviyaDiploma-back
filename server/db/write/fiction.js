@@ -11,7 +11,7 @@ export default new Schema(_.assignIn({
   like: { type: Number, default: 0 },
   description: { type: String },
   status: { type: String, enum: ['stopped', 'inProgress', 'completed'], default: 'inProgress' },
-  genre: {
+  genre: [{
     type: String,
     enum: [
       'Антиутопия',
@@ -32,6 +32,6 @@ export default new Schema(_.assignIn({
       'Другое',
     ],
     required: true,
-  },
+  }],
 },
 standardField));
