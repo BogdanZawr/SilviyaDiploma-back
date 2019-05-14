@@ -41,8 +41,6 @@ class ChapterWrite {
   }
 
   list({ fictionId, limit = 50, pageNumber = 0 }) {
-    console.log(fictionId);
-
     return chapterWrite.findWithOptions({
       query: {
         fictionId,

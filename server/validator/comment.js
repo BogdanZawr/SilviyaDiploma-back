@@ -7,8 +7,6 @@ import validator from '../component/validator';
 
 class FictionValidate {
   async create(body = {}, user) {
-    console.log(body);
-
     const errorList = validator.validate(body, {
       userId: {
         type: 'mongoId',
@@ -55,7 +53,9 @@ class FictionValidate {
     const comment = await commentWrite.findById(body._id);
 
     if (!comment.userId.equals(user._id)) {
-      throw 'Access denied';
+      if (!user.roles.includes('admin')) {
+        throw 'Access denied';
+      }
     }
 
     return _.pick(body, ['_id']);

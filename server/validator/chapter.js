@@ -60,7 +60,9 @@ class FictionValidate {
     const fiction = await fictionWrite.findById(chapter.fictionId);
 
     if (!fiction.userId.equals(user._id)) {
-      throw 'Access denied';
+      if (!user.roles.includes('admin')) {
+        throw 'Access denied';
+      }
     }
 
     return _.pick(body, ['_id']);

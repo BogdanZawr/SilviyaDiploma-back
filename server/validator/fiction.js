@@ -142,15 +142,52 @@ class FictionValidate {
     const fiction = await fictionModel.findById(body._id);
 
     if (!fiction.userId.equals(user._id)) {
-      throw 'Access denied';
+      if (!user.roles.includes('admin')) {
+        throw 'Access denied';
+      }
     }
 
     return _.pick(body, ['_id']);
   }
 
   async list(body = {}) {
-    const data = {};
+    const errorList = validator.validate(body, {
+      genre: {
+        type: 'array',
+        optional: true,
+        items: {
+          type: 'string',
+          empty: false,
+          enum: [
+            'Антиутопия',
+            'Детектив',
+            'Драма',
+            'Исторические',
+            'Мистика',
+            'Психология',
+            'Романтика',
+            'Стихи',
+            'Ужасы',
+            'Фантастика',
+            'Фентези',
+            'Экшн',
+            'Приключения',
+            'Комедия',
+            'Статья',
+            'Другое',
+          ],
+        },
+      },
+    });
 
+    if (_.isArray(errorList)) {
+      throw (errorList);
+    }
+
+    const data = {};
+    if (body.genre) {
+      data.genre = body.genre;
+    }
     const sortFieldsList = [
       'name',
       'like',

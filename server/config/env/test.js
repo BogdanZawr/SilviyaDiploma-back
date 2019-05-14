@@ -4,7 +4,7 @@ module.exports = {
   },
   hostUrl: process.env.HOST_URL || 'http://localhost:8000/',
   mongoConnectionStrings: {
-    write: 'mongodb://localhost:27017/base-write',
+    write: 'mongodb://localhost:27017/diploma-test',
   },
   clientMainFile: '/apidoc/index.html',
   staticMaxAge: 0,
