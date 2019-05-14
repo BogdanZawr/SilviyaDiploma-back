@@ -1,15 +1,15 @@
 import koaRouter from 'koa-router';
 
-import action from '../action/fiction';
-import validate from '../validator/fiction';
+import action from '../action/chapter';
+import validate from '../validator/chapter';
 import { bearerMiddleware } from '../component/passport';
 import middlewareWrapper from '../component/middlewareWrapper';
 
 export const router = koaRouter({
-  prefix: '/api/v1/fiction',
+  prefix: '/api/v1/chapter',
 });
 
-router.all(['/create', '/update', '/delete'], bearerMiddleware);
+router.all(['/create', '/update', '/delete/*'], bearerMiddleware);
 
 router.post('/create', async (req) => {
   await middlewareWrapper.wrape(req, null, async () => {
@@ -18,23 +18,16 @@ router.post('/create', async (req) => {
   });
 });
 
-router.put('/update', async (req) => {
+router.delete('/delete/:_id', async (req) => {
   await middlewareWrapper.wrape(req, null, async () => {
-    const validData = await validate.update(req.request.body, req.request.user);
-    return action.update(validData, req.request.user);
-  });
-});
-
-router.post('/delete', async (req) => {
-  await middlewareWrapper.wrape(req, null, async () => {
-    const validData = await validate.delete(req.request.body, req.request.user);
+    const validData = await validate.delete(req.params, req.request.user);
     return action.delete(validData, req.request.user);
   });
 });
 
-router.get('/getFilteredList', async (req) => {
+router.get('/list', async (req) => {
   await middlewareWrapper.wrape(req, null, async () => {
     const validData = await validate.list(req.query);
-    return action.getFilteredList(validData, req.request.user);
+    return action.getFilteredList(validData);
   });
 });

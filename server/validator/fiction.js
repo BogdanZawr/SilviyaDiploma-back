@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import mongoose from 'mongoose';
 
 import userWrite from '../model/write/user';
 import fictionModel from '../model/write/fiction';
@@ -97,7 +98,7 @@ class FictionValidate {
             'Драма',
             'Исторические',
             'Мистика',
-            'Психилогия',
+            'Психология',
             'Романтика',
             'Стихи',
             'Ужасы',
@@ -140,7 +141,7 @@ class FictionValidate {
 
     const fiction = await fictionModel.findById(body._id);
 
-    if (fiction.userId !== user._id) {
+    if (!fiction.userId.equals(user._id)) {
       throw 'Access denied';
     }
 
@@ -152,7 +153,23 @@ class FictionValidate {
 
     const sortFieldsList = [
       'name',
+      'like',
+      'size',
     ];
+
+    if (body.like) {
+      if (_.isNumber(body.like)) {
+        throw 'Like must be a number';
+      }
+      data.like = body.like;
+    }
+
+    if (body.size) {
+      if (_.isNumber(body.size)) {
+        throw 'Size must be a number';
+      }
+      data.size = body.size;
+    }
 
     if (body.sort) {
       try {

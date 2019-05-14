@@ -11,8 +11,8 @@ class FictionAction {
     return fictionWrite.update(data._id, _.omit(data, ['_id']));
   }
 
-  delete(_id) {
-    return fictionWrite.delete(_id);
+  delete(data) {
+    return fictionWrite.delete(data._id);
   }
 
   getFilteredList(data) {

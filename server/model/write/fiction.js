@@ -21,10 +21,9 @@ class FictionWrite {
   }
 
   delete(_id) {
-    return fictionWrite.findRow({
+    return fictionWrite.deleteRow({
       query: {
         _id,
-        isDeleted: false,
       },
     });
   }
@@ -32,8 +31,6 @@ class FictionWrite {
   list(data) {
     const searchFields = [
       'name',
-      'like',
-      'size',
     ];
 
     const query = {

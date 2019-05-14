@@ -11,23 +11,26 @@ class CommentWrite {
     });
   }
 
-  update(_id, data) {
-    return commentWrite.updateRow({
+  delete(_id) {
+    return commentWrite.deleteRow({
       query: {
         _id,
       },
-      data,
     });
   }
 
-  getListByFictionId(fictionIdList, pageNumber = 0, limit = 30) {
-    return commentWrite.findWithOptions({
+  findById(_id) {
+    return commentWrite.findRow({
       query: {
-        fictionId: { $in: fictionIdList },
+        _id,
       },
-      options: {
-        limit,
-        pageNumber,
+    });
+  }
+
+  list(_id) {
+    return commentWrite.findRows({
+      query: {
+        fictionId: _id,
       },
     });
   }

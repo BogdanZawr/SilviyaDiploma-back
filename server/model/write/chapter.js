@@ -11,12 +11,11 @@ class ChapterWrite {
     });
   }
 
-  update(_id, data) {
-    return chapterWrite.updateRow({
+  delete(_id) {
+    return chapterWrite.deleteRow({
       query: {
         _id,
       },
-      data,
     });
   }
 
@@ -37,6 +36,20 @@ class ChapterWrite {
       query: {
         _id,
         isDeleted: false,
+      },
+    });
+  }
+
+  list({ fictionId, limit = 50, pageNumber = 0 }) {
+    console.log(fictionId);
+
+    return chapterWrite.findWithOptions({
+      query: {
+        fictionId,
+      },
+      options: {
+        limit,
+        pageNumber,
       },
     });
   }
